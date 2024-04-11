@@ -8,6 +8,8 @@ import samsungImg from '../../assets/sponsors/samsung.svg';
 import lgimg from '../../assets/sponsors/simple-icons_lg.svg';
 import slackImg from '../../assets/sponsors/slack.svg';
 import sony from '../../assets/sponsors/sony.svg';
+import Marquee from 'react-marquee-slider'
+
 
 const Main = () => {
   const [slides, setSlides] = useState([
@@ -19,7 +21,7 @@ const Main = () => {
     { img: sony }
   ]);
 
-  
+
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -36,7 +38,8 @@ const Main = () => {
       <div className='hero'>
         <div className="hero_kvadrat" />
         <div className="kvadrat-circle" >
-          <div className="hero-plus" style={{ backgroundImage: `url( ${iconPlus} )` }} />
+          <div className="hero-plus " />
+          <div className="hero-plus horizont" />
         </div>
 
         <div className="hero-title">
@@ -62,19 +65,22 @@ const Main = () => {
           <button>More</button>
         </div>
 
+        <div className="hero_kvadrat-2" />
         <div className="kvadrat-circle-2" >
-          <div className="hero-plus-2" style={{ backgroundImage: `url( ${iconPlus} )` }} />
+          <div className="hero-plus-2"/>
+          <div className="horizont-2"/>
         </div>
       </div>
 
       <div className="slider">
-        <div className="slide-track">
-          {slides.map(({ img, title }, index) => (
-            <div key={index}  className="slide-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+        <Marquee velocity={50} paused={currentSlide !== 0 ? "true" : "false"}>
+          {slides.map(({ img }, index) => (
+            <div key={index} className="slide">
               <img src={img} alt="company" />
             </div>
           ))}
-        </div>
+        </Marquee>
+
       </div>
     </main>
   );
